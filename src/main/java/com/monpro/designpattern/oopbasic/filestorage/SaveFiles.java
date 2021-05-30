@@ -2,8 +2,9 @@ package com.monpro.designpattern.oopbasic.filestorage;
 
 import java.io.File;
 
-public class Main {
-  public static void main(String[] args) {
+
+public class SaveFiles {
+  public static void saveFiles() {
 
     saveFileIntoCloud(new AwsFileStorage(), new File("./*"));
 
