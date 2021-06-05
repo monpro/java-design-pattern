@@ -6,5 +6,6 @@ import lombok.Data;
 public class RuleStateInfo {
   private long maxTps;
   private long maxErrorCount;
+  private long maxTimeoutTps;
 
 }

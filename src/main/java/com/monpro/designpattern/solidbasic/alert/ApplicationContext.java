@@ -9,6 +9,7 @@ public class ApplicationContext {
     alert = new Alert();
     alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
     alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));
+    alert.addAlertHandler(new TimeoutHandler(alertRule, notification));
   }
 
   public Alert getAlert() { return alert; }

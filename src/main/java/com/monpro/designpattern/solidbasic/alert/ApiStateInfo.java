@@ -9,4 +9,5 @@ public class ApiStateInfo {
   private long requestCount;
   private long errorCount;
   private long durationSeconds;
+  private long timeoutCount;
 }
