@@ -15,10 +15,17 @@ public class SecurityTransporter extends Transporter {
 
   @Override
   public Response sendRequest(Request request) {
-    if(StringUtils.isNotBlank(appId) && StringUtils.isNotBlank(appToken)) {
-      request.addPayload("app-id", appId);
-      request.addPayload("app-token", appToken);
+//    if(StringUtils.isNotBlank(appId) && StringUtils.isNotBlank(appToken)) {
+//      request.addPayload("app-id", appId);
+//      request.addPayload("app-token", appToken);
+//    }
+    // following code will break LSP
+    // cause if the exception is thrown, it will break the logic of parent class
+    if (StringUtils.isBlank(appId) || StringUtils.isBlank(appToken)) {
+      throw new RuntimeException("");
     }
+    request.addPayload("app-id", appId);
+    request.addPayload("app-token", appToken);
     return super.sendRequest(request);
   }
 }
