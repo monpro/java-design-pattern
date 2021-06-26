@@ -1,7 +1,6 @@
 package com.monpro.designpattern.metrics;
 
 import com.google.gson.Gson;
-import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
@@ -16,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import static java.util.Collections.max;
 import static java.util.Collections.min;
 
-public class Metrics extends AbstractModule {
+public class Metrics {
 
   private final Map<String, List<Double>> responseTimes = new HashMap<>();
   private final Map<String, List<Double>> timestamps = new HashMap<>();
@@ -84,9 +83,5 @@ public class Metrics extends AbstractModule {
         0,
         interval,
         timeUnit);
-  }
-
-  @Override
-  protected void configure() {
   }
 }
