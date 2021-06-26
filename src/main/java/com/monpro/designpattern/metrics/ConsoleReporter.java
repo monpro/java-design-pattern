@@ -18,7 +18,6 @@ public class ConsoleReporter {
 
   private final MetricsStorage metricsStorage;
 
-  @Inject
   public ConsoleReporter(MetricsStorage metricsStorage) {
     this.metricsStorage = metricsStorage;
   }
