@@ -1,7 +1,6 @@
 package com.monpro.designpattern.metrics;
 
 import com.google.inject.Inject;
-import lombok.AllArgsConstructor;
 
 import java.util.concurrent.TimeUnit;
 
