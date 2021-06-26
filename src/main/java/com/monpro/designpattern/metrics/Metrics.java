@@ -1,6 +1,9 @@
 package com.monpro.designpattern.metrics;
 
 import com.google.gson.Gson;
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +16,20 @@ import java.util.concurrent.TimeUnit;
 import static java.util.Collections.max;
 import static java.util.Collections.min;
 
-public class Metrics {
+public class Metrics extends AbstractModule {
 
   private final Map<String, List<Double>> responseTimes = new HashMap<>();
   private final Map<String, List<Double>> timestamps = new HashMap<>();
   private final ScheduledExecutorService executorService =
       Executors.newSingleThreadScheduledExecutor();
+
+  private static final Metrics Instance = new Metrics();
+
+  @Provides
+  @Singleton
+  public Metrics getMetricsInstance() {
+    return Instance;
+  }
 
   /**
    * record response time for given apiName
@@ -73,5 +84,9 @@ public class Metrics {
         0,
         interval,
         timeUnit);
+  }
+
+  @Override
+  protected void configure() {
   }
 }

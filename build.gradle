@@ -20,4 +20,5 @@ dependencies {
     testCompile 'org.projectlombok:lombok:1.18.8'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
     implementation 'com.google.code.gson:gson:2.8.7'
+    implementation group: 'com.google.inject', name: 'guice', version: '4.0'
 }
