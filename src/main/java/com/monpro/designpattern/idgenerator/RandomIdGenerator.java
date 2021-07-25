@@ -1,5 +1,6 @@
 package com.monpro.designpattern.idgenerator;
 
+import com.google.common.annotations.VisibleForTesting;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetAddress;
@@ -20,15 +21,25 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
   private Optional<String> getLastFieldOfHostName() {
     try {
       final String localHostName = InetAddress.getLocalHost().getHostName();
-      final String[] tokens = localHostName.split("\\.");
-      return Optional.of(tokens[tokens.length - 1]);
+      return getLastSubstringSplitByDot(localHostName);
     } catch (UnknownHostException e) {
       log.error("Unable to get hostName");
     }
     return Optional.empty();
   }
 
-  private String generateRandomAlpha(final int length) {
+  @VisibleForTesting
+  protected Optional<String> getLastSubstringSplitByDot(String localHostName) {
+    if (localHostName == null) {
+      return Optional.empty();
+    }
+    final String[] tokens = localHostName.split("\\.");
+    return Optional.of(tokens[tokens.length - 1]);
+  }
+
+
+  @VisibleForTesting
+  protected String generateRandomAlpha(final int length) {
     final char[] randomChar = new char[length];
     final int maxAsc = 'z';
     int count = 0;
