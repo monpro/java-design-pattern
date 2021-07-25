@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class AuthToken {
 
   private static final long DEFAULT_EXPIRED_TIME_INTERVAL = 1 * 600 * 1000;
   private String token;
   private long createTime;
-  private long expiredTimeInterval = DEFAULT_EXPIRED_TIME_INTERVAL;
+  private final long expiredTimeInterval = DEFAULT_EXPIRED_TIME_INTERVAL;
 
   public AuthToken(String token, long createTime) {
     this.token = token;
