@@ -1,7 +1,6 @@
 package com.monpro.designpattern.metrics;
 
 import com.google.gson.Gson;
-import com.google.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -11,11 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class ConsoleReporter {
-
   private static final ScheduledExecutorService scheduledExecutorService =
       Executors.newSingleThreadScheduledExecutor();
   private static final Gson gson = new Gson();
-
   private final MetricsStorage metricsStorage;
 
   public ConsoleReporter(MetricsStorage metricsStorage) {
