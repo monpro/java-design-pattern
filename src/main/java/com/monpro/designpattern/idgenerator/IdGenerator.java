@@ -1,5 +1,5 @@
 package com.monpro.designpattern.idgenerator;
 
 public interface IdGenerator {
-  String generate();
+  String generate() throws IdGenerationFailureException;
 }

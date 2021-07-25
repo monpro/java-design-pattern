@@ -11,7 +11,7 @@ public class RandomIdGeneratorTest {
   final RandomIdGenerator idGenerator = new RandomIdGenerator();
 
   @Test
-  public void Given_ValidHostName_Then_GetLastSubstring(){
+  public void Given_ValidHostName_Then_GetLastSubstring() {
     Optional<String> lastSubstringSplitByDot = idGenerator.getLastSubstringSplitByDot("A1.A2.A3");
     assertTrue(lastSubstringSplitByDot.isPresent());
     assertEquals(lastSubstringSplitByDot.get(), "A3");
@@ -35,8 +35,13 @@ public class RandomIdGeneratorTest {
     final String randomString = idGenerator.generateRandomAlpha(8);
     assertNotNull(randomString);
     assertEquals(randomString.length(), 8);
-    for(char ch: randomString.toCharArray()) {
+    for (char ch : randomString.toCharArray()) {
       assertTrue(('0' < ch && ch < '9') || ('a' < ch && ch < 'z') || ('A' < ch && ch < 'Z'));
     }
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void GivenNonPositiveLength_When_GenerateRandomAlpha_Then_GetException() {
+    idGenerator.generateRandomAlpha(0);
   }
 }

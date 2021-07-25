@@ -12,20 +12,20 @@ import java.util.Random;
 public class RandomIdGenerator implements LogTraceIdGenerator {
 
   @Override
-  public String generate() {
-    final String localHostName = getLastFieldOfHostName().orElse("Default Host");
+  public String generate() throws IdGenerationFailureException {
+    String localHostName;
+    try {
+      localHostName = getLastFieldOfHostName().orElse("Default Host name");
+    } catch (UnknownHostException e) {
+      throw new IdGenerationFailureException("host name is Empty");
+    }
     final String randomString = generateRandomAlpha(8);
     return String.format("%s-%d-%s", localHostName, System.currentTimeMillis(), randomString);
   }
 
-  private Optional<String> getLastFieldOfHostName() {
-    try {
+  private Optional<String> getLastFieldOfHostName() throws UnknownHostException {
       final String localHostName = InetAddress.getLocalHost().getHostName();
       return getLastSubstringSplitByDot(localHostName);
-    } catch (UnknownHostException e) {
-      log.error("Unable to get hostName");
-    }
-    return Optional.empty();
   }
 
   @VisibleForTesting
@@ -40,6 +40,9 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
 
   @VisibleForTesting
   protected String generateRandomAlpha(final int length) {
+    if (length <= 0) {
+      throw new IllegalArgumentException("length should be positive");
+    }
     final char[] randomChar = new char[length];
     final int maxAsc = 'z';
     int count = 0;
