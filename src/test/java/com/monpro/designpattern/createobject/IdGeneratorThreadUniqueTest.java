@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 import static org.junit.Assert.assertEquals;
 
-public class IdGeneratorThreadSafetyTest {
+public class IdGeneratorThreadUniqueTest {
 
   @Test
   public void Given_TwoThreads_When_CallGetIdOnce_Then_GetSameId() throws InterruptedException {
@@ -18,7 +18,7 @@ public class IdGeneratorThreadSafetyTest {
     for (int i = 0; i < numOfThreads; i++) {
       service.execute(
           () -> {
-            assertEquals(IdGeneratorThreadSafety.getInstance().getId(), 1);
+            assertEquals(IdGeneratorThreadUnique.getInstance().getId(), 1);
             latch.countDown();
           });
     }
