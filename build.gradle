@@ -24,4 +24,6 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
     compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.29'
+    compile 'org.redisson:redisson:3.16.1'
+    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.63.Final:osx-x86_64")
 }

@@ -1,5 +1,7 @@
 package com.monpro.designpattern.oopbasic.filestorage;
 
+import com.monpro.designpattern.createobject.IdGeneratorProcessSafety;
+
 import java.io.File;
 import java.util.List;
 
@@ -21,5 +23,15 @@ public class AzureFileStorage implements IFileStorage {
   @Override
   public List<File> listFiles() {
     return null;
+  }
+
+  @Override
+  public IdGeneratorProcessSafety load(Class<IdGeneratorProcessSafety> idGeneratorProcessSafetyClass) {
+    return null;
+  }
+
+  @Override
+  public void save(IdGeneratorProcessSafety idGeneratorProcessSafety, Class<IdGeneratorProcessSafety> idGeneratorProcessSafetyClass) {
+
   }
 }
