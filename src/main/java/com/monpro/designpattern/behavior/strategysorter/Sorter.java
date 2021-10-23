@@ -9,26 +9,16 @@ public class Sorter {
   public void sortFile(final String filePath) {
     final File file = new File(filePath);
     final long fileSize = file.length();
+    ISorter sorter;
     if (fileSize < 6 * GB) {
-      quickSort(file);
+      sorter = new QuickSort();
     } else if (fileSize < 10 * GB) {
-      externalSort(file);
-    } else if  (fileSize < 100 * GB) {
-      concurrentExternalSort(file);
+      sorter = new ExternalSort();
+    } else if (fileSize < 100 * GB) {
+      sorter = new ConcurrentExternalSort();
     } else {
-      mapReduce(file);
+      sorter = new MapReduceSort();
     }
-  }
-
-  private void mapReduce(final File file) {
-  }
-
-  private void concurrentExternalSort(final File file) {
-  }
-
-  private void externalSort(final File file) {
-  }
-
-  private void quickSort(final File file) {
+    sorter.sort(file);
   }
 }
