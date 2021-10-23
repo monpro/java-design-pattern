@@ -2,6 +2,8 @@ package com.monpro.designpattern.behavior.strategysorter;
 
 import java.io.File;
 
+import static com.monpro.designpattern.behavior.strategysorter.SorterFactory.*;
+
 public class Sorter {
 
   private static final long GB = 1000 * 1000 * 1000;
@@ -11,13 +13,13 @@ public class Sorter {
     final long fileSize = file.length();
     ISorter sorter;
     if (fileSize < 6 * GB) {
-      sorter = new QuickSort();
+      sorter = SorterFactory.getSorter(QUICK_SORT);
     } else if (fileSize < 10 * GB) {
-      sorter = new ExternalSort();
+      sorter = SorterFactory.getSorter(EXTERNAL_SORT);
     } else if (fileSize < 100 * GB) {
-      sorter = new ConcurrentExternalSort();
+      sorter = SorterFactory.getSorter(CONCURRENT_EXTERNAL_SORT);
     } else {
-      sorter = new MapReduceSort();
+      sorter = SorterFactory.getSorter(MAP_REDUCE_SORT);
     }
     sorter.sort(file);
   }
