@@ -1,4 +1,6 @@
-package com.monpro.designpattern.behavior.chain;
+package com.monpro.designpattern.behavior.chain.link;
+
+import com.monpro.designpattern.behavior.chain.link.Handler;
 
 public class HandlerChain {
   private Handler head = null;

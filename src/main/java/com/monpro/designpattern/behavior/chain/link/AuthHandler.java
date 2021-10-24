@@ -1,5 +1,6 @@
-package com.monpro.designpattern.behavior.chain;
+package com.monpro.designpattern.behavior.chain.link;
 
+import com.monpro.designpattern.behavior.chain.link.Handler;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

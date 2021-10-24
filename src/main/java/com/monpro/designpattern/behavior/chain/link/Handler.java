@@ -1,4 +1,4 @@
-package com.monpro.designpattern.behavior.chain;
+package com.monpro.designpattern.behavior.chain.link;
 
 public abstract class Handler {
   protected Handler successor = null;
