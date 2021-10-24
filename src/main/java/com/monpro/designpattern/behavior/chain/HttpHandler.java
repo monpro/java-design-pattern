@@ -6,12 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 public class HttpHandler extends Handler {
 
   @Override
-  public void handle() {
+  public boolean doHandle() {
     boolean handled = false;
     // TODO: add HttpHandler logic
     log.info("HTTP Handler");
-    if (!handled && successor != null) {
-      successor.handle();
-    }
+    return handled;
   }
 }
